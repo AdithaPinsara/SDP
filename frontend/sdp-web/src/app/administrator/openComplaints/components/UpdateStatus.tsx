@@ -6,7 +6,7 @@ import DialogActions from '@mui/material/DialogActions';
 import MenuItem from '@mui/material/MenuItem';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
-import axios, { Axios } from 'axios';
+import axios from 'axios';
 
 interface UpdateStatusModalProps {
   isOpen: boolean;
@@ -31,7 +31,6 @@ const UpdateStatusModal: React.FC<UpdateStatusModalProps> = ({ isOpen, onClose, 
   const [selectedOfficerName, setSelectedOfficerName] = useState("");
   const [assignedOfficers, setAssignedOfficers] = useState<Array<any>>([]);
   const [updateStatusData, setUpdateStatusData] = useState("");
-  const [response, setResponce] = useState("");
   const user = getUserData();
   const currentDate = new Date();
 
@@ -63,9 +62,14 @@ const UpdateStatusModal: React.FC<UpdateStatusModalProps> = ({ isOpen, onClose, 
 
   const handleUpdateStatusSubmit = async () => {
     console.log("Complaine : ", complaints, "ID : ", complaints?._id, "complainId :",complaints?.complaintId )
-    axios.get(`http://localhost:3000/changestate/${complaints?.complaintId}`)
-    .then((response) => setResponce(response.data))
-    .catch((error) => console.error('Error fetching data:', error));
+  const response = await axios.post<TaskResponse>('http://localhost:3000/task', {
+    complainId: complaints?.complaintId,
+    OfficerId: selectedOfficerId,
+    officerName: selectedOfficerName,
+    adminOfficer: user?.id,
+    note: updateStatusData,
+    date: currentDate.toISOString(),
+  });
 
   console.log("post request : ", response);
   window.location.reload()
@@ -75,7 +79,7 @@ const UpdateStatusModal: React.FC<UpdateStatusModalProps> = ({ isOpen, onClose, 
     <Dialog open={isOpen} onClose={onClose} maxWidth="xs" fullWidth>
       <DialogTitle>Update</DialogTitle>
       <DialogContent>
-        {/* <TextField
+        <TextField
           select
           value={selectedOfficerId || ""}
           onChange={(e) => handleUpdateStatusChanges(e.target.value)}
@@ -92,7 +96,7 @@ const UpdateStatusModal: React.FC<UpdateStatusModalProps> = ({ isOpen, onClose, 
                 {officer.name}
               </MenuItem>
             ))}
-        </TextField> */}
+        </TextField>
         <TextField
           label="Note"
           value={updateStatusData}

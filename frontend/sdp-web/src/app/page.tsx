@@ -1,4 +1,7 @@
 import Image from 'next/image'
+import Modal from 'react-modal';
+import ReactDOM from 'react-dom';
+import React from 'react';
 
 export default function Home() {
   return (
@@ -14,7 +17,7 @@ export default function Home() {
             href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
             target="_blank"
             rel="noopener noreferrer"
-          >
+          >a
             By{' '}
             <Image
               src="/vercel.svg"
@@ -111,3 +114,12 @@ export default function Home() {
     </main>
   )
 }
+
+Modal.setAppElement('#root');
+
+ReactDOM.render(
+  <React.StrictMode>
+    <Home />
+  </React.StrictMode>,
+  document.getElementById('root')
+);

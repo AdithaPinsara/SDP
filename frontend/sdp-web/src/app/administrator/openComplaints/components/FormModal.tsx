@@ -69,23 +69,23 @@ const FormModal: React.FC<FormModalProps> = ({ isOpen, onClose, complaints}) => 
     <Dialog open={isOpen} onClose={onClose} maxWidth="xs" fullWidth>
       <DialogTitle>Disturbance by Wildlife Activity</DialogTitle>
       <DialogContent>
-      {/* <Box
+      <Box
           display="flex"
           justifyContent="center"
           alignItems="center"
-          bgcolor="#9696FD" 
+          bgcolor="#1E7222" 
           color="white"
           height={50}
           width={150}
           marginBottom={1}
           style={{
-            paddingLeft: '16px',      // Add left padding
-            borderRadius: '30px',    // Add rounded borders
+            paddingLeft: '16px',    
+            borderRadius: '30px',    
           }}
           onClick={openUpdateStatusModal}  // Open the update status modal on click
         >
           {complaints.status.toUpperCase()}
-        </Box> */}
+        </Box>
         <TextField
           label="Distribution"
           value={complaints.department}
@@ -131,7 +131,7 @@ const FormModal: React.FC<FormModalProps> = ({ isOpen, onClose, complaints}) => 
           Close
         </Button>
         <Button onClick={openUpdateStatusModal} variant="contained" color="primary" fullWidth style={{ marginTop: '8px' }}>
-          Close the Task
+          Update Status
         </Button>
         <Button onClick={openShowHistoryModal} color="secondary" variant="outlined" fullWidth style={{ marginTop: '8px' }}>
           Show History
