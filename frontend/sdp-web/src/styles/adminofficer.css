@@ -141,9 +141,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 535.33px; /* Fill */
+    width: 500.33px; /* Fill */
     height: 120px;
     border-radius: 20px;
+    margin-bottom: 20px;
   }
   .complaint-card-assgine {
     background: linear-gradient(126.97deg, #09380C 28.26%, rgba(4, 48, 6, 0.5) 91.2%);
@@ -227,3 +228,23 @@
     background-color: #445845;
   }
   
+  .assignedcontainer{
+    display: flex; /* Use flexbox layout */
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 5px;
+  }
+
+  .assigened-officer{
+    padding-left: 10px;
+    background-color: #4CAF50;
+    border-radius: 5px;
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 18px;
+    letter-spacing: 0px;
+    text-align: left;
+    color: #fff;
+    padding-right: 10px;
+  }
